@@ -1,0 +1,18 @@
+# Core Deep Learning
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Vision & Language Modeling
+transformers>=4.30.0   # For tokenization and the text decoder
+timm>=0.9.0            # PyTorch Image Models (for the Swin Transformer backbone)
+
+# Data Processing & Utilities
+Pillow>=9.0.0
+numpy>=1.24.0
+PyYAML>=6.0            # Used to parse the default.yaml file
+tqdm>=4.65.0           # Progress bars for the training loop
+
+# Evaluation Metrics
+nltk>=3.8.1            # For BLEU and METEOR scores
+pycocoevalcap          # Standard library for image captioning metrics (CIDEr)
+tensorboard            # For tracking training loss
