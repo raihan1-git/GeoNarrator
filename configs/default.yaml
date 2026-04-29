@@ -1,0 +1,40 @@
+# ==========================================
+# GeoNarrator Baseline Configuration
+# ==========================================
+experiment_name: "geonarrator_swin_baseline"
+seed: 42
+
+# --- Data Pipeline ---
+data:
+  dataset_dir: "data/raw/LEVIR-CC"
+  image_size: 256
+  max_seq_length: 50
+  batch_size: 16
+  num_workers: 4
+
+# --- Architecture ---
+model:
+  encoder:
+    type: "swin_base"      # Options: swin_tiny, swin_base, vit_base
+    pretrained: true
+    freeze_backbone: false
+  
+  fusion:
+    type: "cross_attention" # Options: subtraction, concatenation, cross_attention
+    embed_dim: 768         # Must match the output of the Swin Encoder
+    
+  decoder:
+    type: "transformer"
+    vocab_size: 30522      # Standard BERT vocab size
+    num_layers: 4          # Number of transformer decoder blocks
+    num_heads: 8
+    hidden_dim: 768
+
+# --- Optimization & Training ---
+training:
+  epochs: 50
+  learning_rate: 0.0001
+  weight_decay: 0.05
+  warmup_steps: 1000
+  log_every_n_steps: 10
+  save_checkpoint_dir: "weights/"
